@@ -1,27 +1,37 @@
 # Ang14Rxjs
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
+En algunos casos queremos que una función se ejecuta cuando ha finalizado otra, pues necesitaremos los datos de la primera función para pasarlos a la segunda.
 
-## Development server
+En JS se utilizan los callBacks, pero en Angular se utilizan las Subscripciones
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para obtener datos de una API, importar HttpClientModule en app.module.ts
+´´´
+ import { HttpClientModule } from '@angular/common/http';
+ ...
+imports: [
+    BrowserModule,
+    AppRoutingModule ,
+    HttpClientModule
+],
+...
+```
 
-## Code scaffolding
+##1.- Crear el servicio Datos.service.ts
+-este servicio hace llamada http a la API
+-Este srevicio tiene métodos Observables a los que se subscriben los componentes que necesiten
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+-app.module.ts, añadir el servicio
+´´´
+providers: [DatosService],
+´´´
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+##2.- Subscripción a los datos desde componenetes:
+p.Ej en el navbar, para tener el total de naves
+```
+ngOnInit(): void {
+    // Suscribirse a la lista de naves 
+    this.datosSrv.getListaNaves$().subscribe(naves => {
+      this.contadorNaves = naves.count;
+    })
+  }
+```

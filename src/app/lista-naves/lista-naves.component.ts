@@ -17,7 +17,7 @@ export class ListaNavesComponent implements OnInit {
     // iniciar array de naves
     this.datosSrv.getListaNaves();
 
-    // Suscribirse a la lista de naves, cada vez que haya un cambio, se añadirá al array arrayNaves de datosSrv
+    // Suscribirse a la lista de naves, cada vez que exista un cambio, se añadirán los datos al array arrayNaves de datosSrv
     this.datosSrv.getListaNaves$().subscribe(naves => {
       this.datosSrv.arrayNaves.push(...naves.results);
     })

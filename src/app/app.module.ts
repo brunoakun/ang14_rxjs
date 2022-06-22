@@ -6,17 +6,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListaComponent } from './lista/lista.component'; 
 import { NavbarComponent } from './navbar/navbar.component';
 import { ListaNavesComponent } from './lista-naves/lista-naves.component';
+import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
  
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListaComponent,
     NavbarComponent,
-    ListaNavesComponent
+    ListaNavesComponent,
+    ListaUsuariosComponent
   ],
   imports: [
     BrowserModule,
